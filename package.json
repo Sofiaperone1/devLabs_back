@@ -3,7 +3,7 @@
     "name": "api",
     "version": "0.0.2",
     "scripts": {
-        "dev": "nodemon index.js"
+         "dev": "nodemon --exec node --loader ts-node/esm index.ts"
     },
     "devDependencies": {
         "@types/express": "^5.0.0",

@@ -1,9 +1,12 @@
-
 {
     "compilerOptions": {
-     "target": "ESNext",                         
-     "module": "ESNext",                                      
-     "outDir": "dist",                      
-     "esModuleInterop": true,                       
- }
-  }
+        "target": "ESNext",
+        "module": "ESNext",
+        "outDir": "dist",
+        "esModuleInterop": true,
+        "rootDir": ".",        // Agregado
+        "moduleResolution": "Node"  // Agregado
+    },
+    "include": ["./**/*.ts"],  // Agregado
+    "exclude": ["node_modules"] // Agregado
+}
