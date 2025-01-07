@@ -1,4 +1,6 @@
 {
+
+    "type": "module",
     "name": "api",
     "version": "0.0.2",
     "scripts": {
