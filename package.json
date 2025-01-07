@@ -12,6 +12,10 @@
         "typescript": "^5.7.2"
     },
     "dependencies": {
-        "express": "^4.21.2"
+        "@types/sequelize": "^4.28.20",
+        "@vercel/postgres": "^0.10.0",
+        "express": "^4.21.2",
+        "pg": "^8.13.1",
+        "sequelize": "^6.37.5"
     }
 }
