@@ -1,9 +1,9 @@
-{
-
+{ 
+    "type": "module",
     "name": "api",
     "version": "0.0.2",
     "scripts": {
-        "dev": "nodemon index.ts"
+        "dev": "nodemon index.js"
     },
     "devDependencies": {
         "@types/express": "^5.0.0",
