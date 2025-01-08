@@ -1,6 +1,8 @@
 import express, { Request, Response } from "express";
 
-import { connectDB } from "./database.js";
+import { connectDB } from "./database.js"
+
+import tasksRouter from "./routes/tasks.js"
 
 // Conectar a la base de datos
 connectDB();
@@ -10,6 +12,8 @@ const app = express();
 
 // Middleware para analizar JSON
 app.use(express.json());
+
+app.use("/tasks", tasksRouter);
 
 // Ruta principal
 app.get("/", (req: Request, res: Response) => {
