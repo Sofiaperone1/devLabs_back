@@ -1,5 +1,9 @@
 import express, { Request, Response } from "express";
 
+import { connectDB } from "./database.js";
+
+// Conectar a la base de datos
+connectDB();
 
 // Crear la aplicación de Express
 const app = express();

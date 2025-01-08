@@ -1,7 +1,10 @@
 import mongoose from "mongoose";
-require("dotenv").config();
+import dotenv from "dotenv";
 
-(async () => {
+// Cargar las variables de entorno usando dotenv
+dotenv.config();
+
+export const connectDB = async () => {
   try {
     mongoose.set("strictQuery", true);
     const db = await mongoose.connect(process.env.MONGO_URL);
@@ -12,4 +15,4 @@ require("dotenv").config();
   } catch (error) {
     console.log(error);
   }
-})();
+};
