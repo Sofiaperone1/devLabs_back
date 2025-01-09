@@ -1,8 +1,12 @@
 import express, { Request, Response } from "express";
+import { auth} from 'express-openid-connect';
+import { connectDB } from "./database.js";
+import tasksRouter from "./routes/tasks.js";
+import cors from "cors";
+//import { notFoundHandler, globalErrorHandler } from './middleware/errorMiddleware.js';
+import dotenv from 'dotenv';
 
-import { connectDB } from "./database.js"
-
-import tasksRouter from "./routes/tasks.js"
+dotenv.config();
 
 // Conectar a la base de datos
 connectDB();
@@ -10,10 +14,42 @@ connectDB();
 // Crear la aplicación de Express
 const app = express();
 
+// Middleware de CORS
+app.use(
+  cors({
+    origin: "*",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
+
 // Middleware para analizar JSON
 app.use(express.json());
 
+// Configuración de Auth0
+const config = {
+  authRequired: false,
+  auth0Logout: true,
+  secret: process.env.AUTH0_SECRET,
+  baseURL: process.env.BASE_URL || 'http://localhost:4000',
+  clientID: process.env.AUTH0_CLIENT_ID,
+  issuerBaseURL: process.env.AUTH0_ISSUER_BASE_URL,
+};
+
+// Agregar el router de autenticación de Auth0
+app.use(auth(config));
+
+// Rutas de tareas
 app.use("/tasks", tasksRouter);
+
+// Ruta protegida de ejemplo
+//app.get('/protected', requiresAuth(), (req, res) => {
+//  res.send(`Hello ${req.oidc.user?.name}`);
+//});
+
+// Manejo de errores
+//app.use(notFoundHandler);
+//app.use(globalErrorHandler);
 
 // Ruta principal
 app.get("/", (req: Request, res: Response) => {
