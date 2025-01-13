@@ -1,8 +1,6 @@
 //import Users from "../models/Users";
 //import jwt from "jsonwebtoken";
 
-require("dotenv").config();
-
 import { z } from 'zod';
 
 // Esquema de validación (aunque no es estrictamente necesario aquí, lo añadimos por si necesitas validaciones de parámetros en el futuro)
@@ -17,7 +15,6 @@ const profileSchema = z.object({
 export const getProfile = (req, res) => {
   try {
     const user = req.oidc.user;
-    
     // Validar que el usuario exista en el objeto req.oidc.user
     const parsed = profileSchema.safeParse({ user });
     if (!parsed.success) {

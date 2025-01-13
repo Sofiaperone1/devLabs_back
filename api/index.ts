@@ -2,6 +2,7 @@ import express, { Request, Response } from "express";
 import { auth} from 'express-openid-connect';
 import { connectDB } from "./database.js";
 import tasksRouter from "./routes/tasks.js";
+import userRouter from "./routes/user.js"
 import cors from "cors";
 //import { notFoundHandler, globalErrorHandler } from './middleware/errorMiddleware.js';
 import dotenv from 'dotenv';
@@ -41,6 +42,7 @@ app.use(auth(config));
 
 // Rutas de tareas
 app.use("/tasks", tasksRouter);
+app.use("/user", userRouter);
 
 // Ruta protegida de ejemplo
 //app.get('/protected', requiresAuth(), (req, res) => {

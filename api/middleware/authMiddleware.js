@@ -4,3 +4,5 @@ export function ensureAuthenticated(req, res, next) {
     }
     next(); // Si está autenticado, pasa al siguiente middleware o controlador
   }
+
+  
