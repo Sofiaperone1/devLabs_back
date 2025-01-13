@@ -18,7 +18,7 @@ const app = express();
 // Middleware de CORS
 // Configura CORS para permitir solicitudes de tu frontend
 const corsOptions = {
-  origin: 'https://dev-labs-front.vercel.app/', // URL de tu frontend desplegado en Vercel
+  origin: 'https://dev-labs-front.vercel.app', // URL de tu frontend desplegado en Vercel
   methods: ['GET', 'POST', 'PUT', 'DELETE'],  // Métodos permitidos
   allowedHeaders: ['Content-Type', 'Authorization'], // Encabezados permitidos
 };
