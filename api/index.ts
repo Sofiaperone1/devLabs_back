@@ -16,13 +16,14 @@ connectDB();
 const app = express();
 
 // Middleware de CORS
-app.use(
-  cors({
-    origin: "*",
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    allowedHeaders: ["Content-Type", "Authorization"],
-  })
-);
+// Configura CORS para permitir solicitudes de tu frontend
+const corsOptions = {
+  origin: 'https://dev-labs-front.vercel.app/', // URL de tu frontend desplegado en Vercel
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],  // Métodos permitidos
+  allowedHeaders: ['Content-Type', 'Authorization'], // Encabezados permitidos
+};
+
+app.use(cors(corsOptions)); // Usa el middleware de CORS
 
 // Middleware para analizar JSON
 app.use(express.json());
