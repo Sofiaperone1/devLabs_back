@@ -54,15 +54,15 @@ The API will be accessible at http://localhost:4000.
 
 API Endpoints
 
-- POST /api/todos - Create a new task
+- POST /tasks/createTasks - Create a new task
 
-- GET /api/todos - Retrieve all tasks for the authenticated user
+- GET /tasks/getAllTasks - Retrieve all tasks for the authenticated user
 
-- GET /api/todos/:id - Retrieve a specific task by ID
+- GET /tasks/getTask/:id - Retrieve a specific task by ID
 
-- PUT /api/todos/:id - Update a task by ID
+- PUT /tasks/editTasks/:description - Update a task by description
 
-- DELETE /api/todos/:id - Delete a task by ID
+- DELETE /tasks/deleteTask/:id - Delete a task by ID
 
 Deployment: Deploy to Vercel
 
