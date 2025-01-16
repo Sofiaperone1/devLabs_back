@@ -27,8 +27,8 @@ export const getTask = async (req, res, next) => {
 
 export const getAllTasks = async (req, res, next) => {
   try {
-    const allTasks = await Tasks.find();
-    console.log("trayendo las tareas: ", allTasks)
+    const allTasks = await Tasks.find().sort({ date: -1 }); // -1 para orden descendente
+    console.log("trayendo las tareas ordenadas: ", allTasks)
     res.status(200).send(allTasks)
   } catch (error) {
     next(error);
@@ -70,11 +70,16 @@ export const createTasks = async (req, res, next) => {
     next(error);
   }
 };
-
 export const editTasks = async (req, res, next) => {
   try {
-    const { id } = req.params;
-    const { description, date } = req.body;
+    const { description } = req.params;
+    // Decode la descripción que viene en la URL
+    const decodedDescription = decodeURIComponent(description);
+    console.log("Descripción recibida en el back1:", description);
+    console.log("Descripción recibida en el back:", decodedDescription);
+    
+    const { description: newDescription, date } = req.body;
+    console.log("Body recibido en el back:", { newDescription, date });
 
     const parsed = taskSchema.partial().safeParse(req.body);
     if (!parsed.success) {
@@ -84,10 +89,10 @@ export const editTasks = async (req, res, next) => {
       });
     }
 
-    const task = await Tasks.findByIdAndUpdate(
-      id,
-      { 
-        description: description || undefined,
+    const task = await Tasks.findOneAndUpdate(
+      { description: decodedDescription }, // Usamos la descripción decodificada
+      {
+        description: newDescription || undefined,
         date: date || new Date().toISOString()
       },
       { new: true }
@@ -96,7 +101,7 @@ export const editTasks = async (req, res, next) => {
     if (!task) {
       return res.status(404).json({
         status: 'Not Found',
-        message: `Task with id ${id} not found`
+        message: `Task with description "${decodedDescription}" not found`
       });
     }
 
@@ -104,7 +109,6 @@ export const editTasks = async (req, res, next) => {
       status: 'Updated',
       data: task
     });
-
   } catch (error) {
     next(error);
   }

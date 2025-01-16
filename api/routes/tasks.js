@@ -7,7 +7,8 @@ const router = Router();
 router.get('/getTask/:id', getTask);
 router.get('/getAllTasks', getAllTasks);
 router.post('/createTasks', createTasks);
-router.put('/editTasks/:id', editTasks);
+router.put('/editTasks/:description', editTasks);
+
 router.delete('/deleteTask/:id', deleteTasks);
 
 // Exportar el router
