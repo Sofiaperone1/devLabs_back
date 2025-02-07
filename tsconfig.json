@@ -5,7 +5,9 @@
         "outDir": "dist",
         "esModuleInterop": true,
         "rootDir": ".",        // Agregado
-        "moduleResolution": "Node"  // Agregado
+        "moduleResolution": "Node",  // Agregado,
+        "allowImportingTsExtensions": true,
+        "noEmit": true, 
     },
     "include": ["./**/*.ts"],  // Agregado
     "exclude": ["node_modules"] // Agregado
